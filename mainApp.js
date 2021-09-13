@@ -17,8 +17,10 @@ let defaultContent = '<img id="defaultImage" src="https://image.s10.sfmc-content
 let saveData = () => {
     console.log('Saving data...');
 
-    mapData.field = document.getElementById('field').value;
-    mapData.team = document.getElementById('team').value;
+    var item = document.getElementById("game-select");
+    mapData.team = item.options[item.selectedIndex].getAttribute('data-name');
+    mapData.field = item.options[item.selectedIndex].getAttribute('data-leagueinfo');
+    
     
     sdk.setData(mapData, (data) => {
         // mapData = data;
