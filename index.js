@@ -10,12 +10,8 @@ app.use(express.static('.'));
 app.set('view engine', 'ejs');
 
 let mapData = {
-    sku: '',
-    itemName: '',
-    itemDescription: '',
-    itemPrice: '',
-    itemImage: '',
-    itemLink: ''
+    field: '',
+    team: ''
 };
 
 app.get('/', (req, res) => {
