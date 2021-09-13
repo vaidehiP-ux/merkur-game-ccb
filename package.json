@@ -1,0 +1,19 @@
+{
+    "name": "blocksdk",
+    "version": "1.0.1",
+    "description": "Product Catalogue for Marketing Cloud",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/brunnebbudler/heroku-productcatalogue.git"
+    },
+    "main": "blocksdk.js",
+    "author": "Stefan Brunnengräber",
+    "license": "BSD-3-Clause",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "dependencies": {
+        "ejs": "^2.5.9",
+        "express": "^4.16.3"
+    }
+}
