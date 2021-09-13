@@ -17,10 +17,9 @@ let defaultContent = '<img id="defaultImage" src="https://image.s10.sfmc-content
 let saveData = () => {
     console.log('Saving data...');
 
-    var item = document.getElementById("game-select");
-    mapData.team = item.options[item.selectedIndex].getAttribute('data-name');
-    mapData.field = item.options[item.selectedIndex].getAttribute('data-leagueinfo');
-    
+    mapData.field = $('#field').text();
+    mapData.team = $('#team').text();
+
     
     sdk.setData(mapData, (data) => {
         // mapData = data;
@@ -30,8 +29,8 @@ let saveData = () => {
       <tr>
         <!-- added padding here -->
         <td>
-         ${mapData.field} <br />
-         ${mapData.team}
+         field: ${mapData.field} <br />
+         team: ${mapData.team}
         </td>
       </tr>
     </table>
