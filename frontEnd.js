@@ -444,7 +444,8 @@ $(document).ready(function() {
                   marketData["bet1Link_full"] = linkPrefix + marketData.bet1Link;
                   marketData["betXLink_full"] = linkPrefix + marketData.betXLink;
                   marketData["bet2Link_full"] = linkPrefix + marketData.bet2Link;
-
+console.log("test");
+console.log(marketData);
                   localStorage.setItem("marketData", JSON.stringify(marketData));
                   document.getElementById("field").innerHTML = gameResult[i].leagueInfo.name;
                   document.getElementById("team").innerHTML = gameResult[i].teams[0].name + " - " + gameResult[i].teams[1].name;
