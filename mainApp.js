@@ -8,7 +8,21 @@ let sdk = new window.sfdc.BlockSDK(); //initalize SDK
 
 let mapData = {
     field: '',
-    team: ''
+    team: '',
+    id: '',
+    team1: '',
+    team2: '',
+    startTime: '',
+    leagueInfo: '',
+    leagueid: '',
+    bet1Link: '',
+    betXLink: '',
+    bet2Link: '',
+    baseUrl: '',
+    tip1id: '',
+    tipXid: '',
+    tip2id: '',
+    sportid: ''
 };
 
 
@@ -19,6 +33,20 @@ let saveData = () => {
 
     mapData.field = $('#field').text();
     mapData.team = $('#team').text();
+    mapData.id = $('#id').text();
+    mapData.team1 = $('#team1').text();
+    mapData.team2 = $('#team2').text();
+    mapData.startTime = $('#startTime').text();
+    mapData.leagueInfo = $('#leagueInfo').text();
+    mapData.leagueid = $('#leagueid').text();
+    mapData.bet1Link = $('#bet1Link').text();
+    mapData.betXLink = $('#betXLink').text();
+    mapData.bet2Link = $('#bet2Link').text();
+    mapData.baseUrl = $('#baseUrl').text();
+    mapData.tip1id = $('#tip1id').text();
+    mapData.tipXid = $('#tipXid').text();
+    mapData.tip2id = $('#tip2id').text();
+    mapData.sportid = $('#sportid').text();
 
     
     sdk.setData(mapData, (data) => {
@@ -30,7 +58,21 @@ let saveData = () => {
         <!-- added padding here -->
         <td>
          field: ${mapData.field} <br />
-         team: ${mapData.team}
+         team: ${mapData.team}<br />
+         id: ${mapData.id}<br />
+         team1: ${mapData.team1}<br />
+         team2: ${mapData.team2}<br />
+         startTime: ${mapData.startTime}<br />
+         leagueInfo: ${mapData.leagueInfo}<br />
+         leagueid: ${mapData.leagueid}<br />
+         bet1Link: ${mapData.bet1Link}<br />
+         betXLink: ${mapData.betXLink}<br />
+         bet2Link: ${mapData.bet2Link}<br />
+         baseUrl: ${mapData.baseUrl}<br />
+         tip1id: ${mapData.tip1id}<br />
+         tipXid: ${mapData.tipXid}<br />
+         tip2id: ${mapData.tip2id}<br />
+         sportid: ${mapData.sportid}
         </td>
       </tr>
     </table>
