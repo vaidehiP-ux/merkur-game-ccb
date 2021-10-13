@@ -77,7 +77,7 @@ $(document).ready(function() {
     //get Merkur feed filters
     $.ajax({
       type: "GET",
-      url: "https://www.cashpoint.com/blog/ajax/salesforce/marketing-cloud/de/getFilters",
+      url: "https://www.cashpoint.com/blog/ajax/salesforce/marketing-cloud/en/getFilters",
       success: function(result) {
 
         console.log(result);
