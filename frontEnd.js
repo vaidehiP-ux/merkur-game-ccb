@@ -303,7 +303,7 @@ $(document).ready(function() {
             gameOutput +=
               "<option value='" +
               result[i].teams[0].name +
-              " - " +
+              "-" +
               result[i].teams[1].name +
               "' data-Name='" +
               result[i].teams[0].name +
@@ -317,7 +317,7 @@ $(document).ready(function() {
               result[i].leagueInfo.name +
               "'>" +
               result[i].teams[0].name +
-              "-" +
+              " - " +
               result[i].teams[1].name +
               "</option>";
           }
