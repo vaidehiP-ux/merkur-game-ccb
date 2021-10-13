@@ -49,8 +49,12 @@
         <form class="form-horizontal">
             <fieldset>
                 <legend>Merkur Feed Generator</legend>
-                <button class="btn clear" id="btnClear">Clear</button>
 
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn clear" id="btnClear">Clear</button>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group">
@@ -64,17 +68,24 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="form-group">
+                            
+                            <div class="col-sm-12">
+                                <label class="control-label" for="sport-filter">Select Sport</label>
+                                <select class="js-sport-select js-sport-filter" name="sport-filter" id="sport-filter">
+                                </select>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-xs-12 col-sm-12">
                         <div class="form-group">
                             
-                            <div class="col-sm-6">
-                                <label class="control-label" for="sport-filter">Select Sport</label>
-                                <select class="js-sport-select js-sport-filter" name="sport-filter" id="sport-filter">
-                                </select>
-                            </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <label class="control-label" for="country-filter">Select Country</label>
                                 <select class="js-country-select js-country-filter" name="country-filter" id="country-filter">
                                 </select>
