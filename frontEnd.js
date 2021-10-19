@@ -1,3 +1,5 @@
+
+
 $(document).ready(function() {
 
     //declare selector dropdowns
@@ -189,7 +191,7 @@ $(document).ready(function() {
     //Dropdown: custom CSS
     $('.js-container-select').select2({
       placeholder: 'Select an option',
-      width: '100%'
+      width: '100%',
     });
     $('.js-game-select').select2({
       placeholder: 'Select an option',
@@ -197,7 +199,8 @@ $(document).ready(function() {
     });
     $('.js-sport-select').select2({
       placeholder: 'Select an option',
-      width: '100%'
+      width: '100%',
+      margin: '20px'
     });
     $('.js-country-select').select2({
       placeholder: 'Select an option',
@@ -215,6 +218,10 @@ $(document).ready(function() {
       placeholder: 'Select an option',
       width: '100%'
     });
+
+   
+
+    
 
 
   function onChangeEvent() {
@@ -242,12 +249,19 @@ $(document).ready(function() {
 
         //check for dependeant feed
         if((document.getElementById('country-filter').value)) {
+          $(".js-country-select").each(function() {
+            $(this).siblings(".select2-container").removeClass( 'border' );
+          });
+
           var targetItem = $(this).find(':selected');
           var targetCountryId = targetItem.attr("data-filter-id");
           requestParam = "sportId=" + targetSportId + "|" + "countryId=" + targetCountryId;
           languageValidation();
         } else {
-          alert("Please select country to meet feed criteria");
+          //alert("Please select country to meet feed criteria");
+          $(".js-country-select").each(function() {
+            $(this).siblings(".select2-container").addClass( 'border' );
+          });
         }
         $("#container-filter").attr('disabled',true);
         $("#league-filter").attr('disabled',true);
@@ -267,13 +281,27 @@ $(document).ready(function() {
     var targetLanguage;
 
     if (!requestParam) {
-      alert("Please select either one of the above three options['Conatiner' OR 'Sport And Country' OR 'League'] to meet filter creiteria");
+      //alert("Please select either one of the above three options['Conatiner' OR 'Sport And Country' OR 'League'] to meet filter creiteria");
+      $(".selections").each(function() {
+        $(this).siblings(".select2-container").addClass( 'border' );
+      });
     } else {
-      if(!(document.getElementById('url-filter').value)) {
-      alert("Please select Base Url to meet feed criteria");
-      } else if (!(document.getElementById('language-filter').value)) {
-        alert("Please select Language to meet feed criteria");
+      if(!(document.getElementById('url-filter').value) || !(document.getElementById('language-filter').value)) {
+      //alert("Please select Base Url to meet feed criteria");
+      $(".js-url-select").each(function() {
+        $(this).siblings(".select2-container").addClass( 'border' );
+      });
+      $(".js-language-select").each(function() {
+        $(this).siblings(".select2-container").addClass( 'border' );
+      });
       } else {
+        //clear CSS
+        $(".js-url-select").each(function() {
+          $(this).siblings(".select2-container").removeClass( 'border' );
+        });
+        $(".js-language-select").each(function() {
+          $(this).siblings(".select2-container").removeClass( 'border' );
+        });
         var targetItem = $(this).find(':selected');
         targetLanguage = targetItem.attr("data-name");
         selectedUrl = document.getElementById('url-filter').value
@@ -322,10 +350,15 @@ $(document).ready(function() {
               "</option>";
           }
           gameDropdownResources.html(gameOutput);
+          $(".js-game-select").each(function() {
+            $(this).siblings(".select2-container").addClass( 'border' );
+          });
            $("#game-dropdown").show();
          } else {
-          document.getElementById("noRecordText").innerHTML = "Try selecting a different combimation of 'Sport and Country'";
-          $("#incorrect-selection-container").show();
+            document.getElementById("errorText").innerHTML = result.status? result.status: "No games found";
+            document.getElementById("noRecordText").innerHTML = "Try selecting a different combimation of either 'Container', 'Sport and Country' or 'League'. Hit clear to enable a new selection";
+            $("#incorrect-selection-container").show();
+          
          }
       }
     });
@@ -348,21 +381,41 @@ $(document).ready(function() {
     requestParam = "";
   });
 
+  function clearMarketData() {
+    document.getElementById("field").innerHTML = "";
+    document.getElementById("team").innerHTML = "";
+    document.getElementById("id").innerHTML = "";
+    document.getElementById("team1").innerHTML = "";
+    document.getElementById("team2").innerHTML = "";
+    document.getElementById("startTime").innerHTML = "";
+    document.getElementById("leagueInfo").innerHTML = "";
+    document.getElementById("leagueid").innerHTML = "";
+    document.getElementById("bet1Link").innerHTML = "";
+    document.getElementById("betXLink").innerHTML = "";
+    document.getElementById("bet2Link").innerHTML = "";
+    document.getElementById("baseUrl").innerHTML = "";
+    document.getElementById("tip1id").innerHTML = "";
+    document.getElementById("tipXid").innerHTML = "";
+    document.getElementById("tip2id").innerHTML = "";
+    document.getElementById("sportid").innerHTML = "";
+  }
+
 
   $("#game-select").change(function() {
 
     //initialization
     $("#selection-result").hide();
     $("#incorrect-selection-container").hide();
-    document.getElementById("field").innerHTML = "";
-    document.getElementById("team").innerHTML = "";
+    clearMarketData();
     document.getElementById("noRecordText").innerHTML = ";"
 
     if(!(document.getElementById('url-filter').value)) {
         alert("Please select Bse Url!");
       } else {
         
-    
+        $(".js-game-select").each(function() {
+          $(this).siblings(".select2-container").removeClass( 'border' );
+        });
     var selectedGameItem = $(this).find(':selected');
     var gameId = selectedGameItem.attr("data-id");
     var selectedGame = {};
@@ -445,17 +498,39 @@ $(document).ready(function() {
                   marketData["betXLink_full"] = linkPrefix + marketData.betXLink;
                   marketData["bet2Link_full"] = linkPrefix + marketData.bet2Link;
 
-                  localStorage.setItem("marketData", JSON.stringify(marketData));
+                  //localStorage.setItem("marketData", JSON.stringify(marketData));
+
+                  //set marketData for view
+                  console.log("dgfjdfgg: ", gameResult[i]);
                   document.getElementById("field").innerHTML = gameResult[i].leagueInfo.name;
                   document.getElementById("team").innerHTML = gameResult[i].teams[0].name + " - " + gameResult[i].teams[1].name;
+                  document.getElementById("id").innerHTML = marketData.id;
+                  document.getElementById("team1").innerHTML = marketData.team1.name;
+                  document.getElementById("team2").innerHTML = marketData.team2.name;
+                  document.getElementById("startTime").innerHTML = marketData.startTime;
+                  document.getElementById("leagueInfo").innerHTML = marketData.leagueInfo.name;
+                  document.getElementById("leagueid").innerHTML = marketData.leagueInfo.id;
+                  document.getElementById("bet1Link").innerHTML = marketData.bet1Link;
+                  document.getElementById("betXLink").innerHTML = marketData.betXLink;
+                  document.getElementById("bet2Link").innerHTML = marketData.bet2Link;
+                  document.getElementById("baseUrl").innerHTML = marketData.linkPrefix;
+                  document.getElementById("tip1id").innerHTML = marketData.tip1id;
+                  document.getElementById("tipXid").innerHTML = marketData.tipXid;
+                  document.getElementById("tip2id").innerHTML = marketData.tip2id;
+                  document.getElementById("sportid").innerHTML = marketData.sport;
 
                   $("#selection-result").show();
                   abort = true;
+
+                  //clear no records as active record found
+                    document.getElementById("noRecordText").innerHTML = "";
+                    $("#incorrect-selection-container").hide();
                 } else { 
-                  document.getElementById("field").innerHTML = "";
-                  document.getElementById("team").innerHTML = "";
-                  document.getElementById("noRecordText").innerHTML = "Try selecting a different game entity";
-                  $("#incorrect-selection-container").show();
+                  if(!abort) {
+                    clearMarketData();
+                    document.getElementById("noRecordText").innerHTML = "Try selecting a different game entity";
+                    $("#incorrect-selection-container").show();
+                  }
                 }
               }
             }

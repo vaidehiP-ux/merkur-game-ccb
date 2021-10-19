@@ -31,6 +31,13 @@
     .btn {
         margin-bottom: 15px;
     }
+    .border {
+        border: 1px solid orange;
+    }
+    .error {
+        color: red;
+        margin-bottom: 15px;
+    }
 
     .clear:hover {
       background-color: #0d6efd;
@@ -65,7 +72,7 @@
                             
                             <div class="col-sm-12">
                                 <label class="control-label" for="container-filter">Select Container</label>
-                                <select class="js-container-select js-container-filter" name="container-filter" id="container-filter">
+                                <select class="selections js-container-select js-container-filter" name="container-filter" id="container-filter">
                                 </select>
                             </div>
                         </div>  
@@ -78,7 +85,7 @@
                             
                             <div class="col-sm-12">
                                 <label class="control-label" for="sport-filter">Select Sport</label>
-                                <select class="js-sport-select js-sport-filter" name="sport-filter" id="sport-filter">
+                                <select class="selections js-sport-select js-sport-filter" name="sport-filter" id="sport-filter">
                                 </select>
                             </div>
                         </div>  
@@ -90,8 +97,8 @@
                         <div class="form-group">
                             
                             <div class="col-sm-12">
-                                <label class="control-label" for="country-filter">Select Country</label>
-                                <select class="js-country-select js-country-filter" name="country-filter" id="country-filter">
+                                <label class="control-label" for="country-filter" required>Select Country</label>
+                                <select class=" selections js-country-select js-country-filter" name="country-filter" id="country-filter">
                                 </select>
                             </div>
                         </div>  
@@ -104,7 +111,7 @@
                             
                             <div class="col-sm-12">
                                 <label class="control-label" for="league-filter">Select League</label>
-                                <select class="js-league-select js-league-filter" name="league-filter" id="league-filter">
+                                <select class=" selections js-league-select js-league-filter" name="league-filter" id="league-filter">
                                 </select>
                             </div>
                         </div>  
@@ -117,7 +124,7 @@
                             
                             <div class="col-sm-12">
                                 <label class="control-label" for="url-filter">Select Base Url</label>
-                                <select class="js-url-select js-url-filter" name="url-filter" id="url-filter">
+                                <select class="selections js-url-select js-url-filter" name="url-filter" id="url-filter">
                                 </select>
                             </div>
                         </div>  
@@ -129,7 +136,7 @@
                         <div class="form-group">
                             
                             <div class="col-sm-12">
-                                <label class="control-label" for="language-filter">Select Language</label>
+                                <label class="selections control-label" for="language-filter">Select Language</label>
                                 <select class="js-language-select js-language-filter" name="language-filter" id="language-filter">
                                 </select>
                             </div>
@@ -178,8 +185,7 @@
                 <div id="incorrect-selection-container" class="row">
                     <div class="col-xs-12 col-sm-12">
                         <legend >No records found</legend>
-                        
-
+                        <div><small class="error" id="errorText"></small></div>
                         <small class="clear-selection-hint"><i id="noRecordText"></i></small>
                     </div>
                 </div>
