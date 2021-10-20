@@ -63,6 +63,7 @@ $(document).ready(function() {
     $("#selection-result").hide();
     $("#incorrect-selection-container").hide();
     $("#btnClearText").hide();
+    document.getElementById("btnClearText").innerHTML = "";
     $("#sport-filter").attr('disabled',false);
     $("#country-filter").attr('disabled',false);
     $("#container-filter").attr('disabled',false);
@@ -229,6 +230,7 @@ $(document).ready(function() {
 
     //if exist already clear fields
     if (document.getElementById('game-select').value) {
+      document.getElementById("btnClearText").innerHTML = "Clear all fields to begin feed selection";
       $("#btnClearText").show();
     } else {
       if(document.getElementById('container-filter').value) {
@@ -282,6 +284,7 @@ $(document).ready(function() {
     var targetLanguage;
 
     if (document.getElementById('game-select').value) {
+      document.getElementById("btnClearText").innerHTML = "Clear all fields to begin feed selection";
       $("#btnClearText").show();
     } else {
     if (!requestParam) {
@@ -380,6 +383,7 @@ $(document).ready(function() {
     $("#game-dropdown").hide();
     $("#selection-result").hide();
     $("#incorrect-selection-container").hide();
+    document.getElementById("btnClearText").innerHTML = "";
     $("#btnClearText").hide();
     selectedUrl = "";
     selectedLanguage = "";
@@ -413,7 +417,7 @@ $(document).ready(function() {
     $("#selection-result").hide();
     $("#incorrect-selection-container").hide();
     clearMarketData();
-    document.getElementById("noRecordText").innerHTML = ";"
+    document.getElementById("noRecordText").innerHTML = ""
 
     if(!(document.getElementById('url-filter').value)) {
         alert("Please select Bse Url!");
