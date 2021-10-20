@@ -62,6 +62,7 @@ $(document).ready(function() {
     $("#game-dropdown").hide();
     $("#selection-result").hide();
     $("#incorrect-selection-container").hide();
+    $("#btnClearText").hide();
     $("#sport-filter").attr('disabled',false);
     $("#country-filter").attr('disabled',false);
     $("#container-filter").attr('disabled',false);
@@ -228,7 +229,7 @@ $(document).ready(function() {
 
     //if exist already clear fields
     if (document.getElementById('game-select').value) {
-      alert("Clear all fields to begin feed selection");
+      $("#btnClearText").show();
     } else {
       if(document.getElementById('container-filter').value) {
         var targetItem = $(this).find(':selected');
@@ -280,6 +281,9 @@ $(document).ready(function() {
   function languageValidation() {
     var targetLanguage;
 
+    if (document.getElementById('game-select').value) {
+      $("#btnClearText").show();
+    } else {
     if (!requestParam) {
       //alert("Please select either one of the above three options['Conatiner' OR 'Sport And Country' OR 'League'] to meet filter creiteria");
       $(".selections").each(function() {
@@ -308,6 +312,7 @@ $(document).ready(function() {
         getGameData(requestParam, targetLanguage, selectedUrl);
       }
     }
+  }
   }
 
   function getGameData(requestObject, languageParam, selectedUrl) {
@@ -375,6 +380,7 @@ $(document).ready(function() {
     $("#game-dropdown").hide();
     $("#selection-result").hide();
     $("#incorrect-selection-container").hide();
+    $("#btnClearText").hide();
     selectedUrl = "";
     selectedLanguage = "";
     targetSportId = "";
